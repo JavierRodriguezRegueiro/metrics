@@ -1,15 +1,21 @@
 package com.factorial.metrics.metric.domain;
 
+import com.factorial.metrics.shared.domain.Id;
+
 public class Metric {
+    private final Id id;
     private final MetricTimestamp timestamp;
     private final MetricName name;
     private final MetricValue value;
 
-    public Metric(MetricTimestamp timestamp, MetricName name, MetricValue value) {
+    public Metric(Id id, MetricTimestamp timestamp, MetricName name, MetricValue value) {
+        this.id = id;
         this.timestamp = timestamp;
         this.name = name;
         this.value = value;
     }
+
+    public Id getId() { return id; }
 
     public MetricTimestamp getTimestamp() {
         return timestamp;
