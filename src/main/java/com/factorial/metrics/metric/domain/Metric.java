@@ -1,27 +1,25 @@
 package com.factorial.metrics.metric.domain;
 
-import java.sql.Timestamp;
-
 public class Metric {
-    private final Timestamp timestamp;
-    private final String name;
-    private final String value;
+    private final MetricTimestamp timestamp;
+    private final MetricName name;
+    private final MetricValue value;
 
-    public Metric(Timestamp timestamp, String name, String value) {
+    public Metric(MetricTimestamp timestamp, MetricName name, MetricValue value) {
         this.timestamp = timestamp;
         this.name = name;
         this.value = value;
     }
 
-    public Timestamp getTimestamp() {
+    public MetricTimestamp getTimestamp() {
         return timestamp;
     }
 
-    public String getName() {
+    public MetricName getName() {
         return name;
     }
 
-    public String getValue() {
+    public MetricValue getValue() {
         return value;
     }
 }
