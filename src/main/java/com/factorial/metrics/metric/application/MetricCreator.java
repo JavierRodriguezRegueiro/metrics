@@ -14,7 +14,7 @@ public class MetricCreator {
         this.repository = repository;
     }
 
-    public void create(String timestamp, String name, String value) throws InvalidArgumentException {
-        repository.save(new Metric(new MetricTimestamp(timestamp), new MetricName(name), new MetricValue(value)));
+    public void create(MetricTimestamp timestamp, MetricName name, MetricValue value) throws InvalidArgumentException {
+        repository.save(new Metric(timestamp, name, value));
     }
 }
