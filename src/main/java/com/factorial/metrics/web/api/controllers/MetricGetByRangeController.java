@@ -5,6 +5,7 @@ import com.factorial.metrics.src.metric.domain.MetricDTO;
 import com.factorial.metrics.src.metric.domain.MetricTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class MetricGetByRangeController {
         this.finder = finder;
     }
 
+    @CrossOrigin
     @GetMapping(path = "/metrics")
     public ResponseEntity<ArrayList<MetricDTO>> run(@RequestParam("init") String init, @RequestParam("end") String end)  {
         try {

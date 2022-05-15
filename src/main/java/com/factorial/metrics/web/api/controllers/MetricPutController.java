@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+
 @RestController
 public class MetricPutController {
     private final MetricCreator metricCreator;
@@ -19,13 +21,44 @@ public class MetricPutController {
         this.metricCreator = metricCreator;
     }
 
+    @CrossOrigin
     @PutMapping(path = "/metrics/{id}")
-    public ResponseEntity<String> run(@PathVariable String id, @RequestParam("timestamp") String timestamp, @RequestParam("name") String name, @RequestParam("value") String value) {
+    public ResponseEntity<String> run(@PathVariable String id, @RequestBody Request request) {
         try {
-            this.metricCreator.create(Id.createIdFromString(id), new MetricTimestamp(timestamp), new MetricName(name), new MetricValue(value));
+            this.metricCreator.create(Id.createIdFromString(id), new MetricTimestamp(request.getTimestamp()), new MetricName(request.getName()), new MetricValue(request.getValue()));
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+}
+
+final class Request {
+    private String timestamp;
+    private String name;
+    private String value;
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }
