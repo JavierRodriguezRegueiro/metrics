@@ -28,4 +28,8 @@ public class Id {
     public UUID getId() {
         return id;
     }
+
+    public String toString() {
+        return this.id.toString();
+    }
 }

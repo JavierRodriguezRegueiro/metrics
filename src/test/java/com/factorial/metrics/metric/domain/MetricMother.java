@@ -9,7 +9,7 @@ public class MetricMother {
         return new Metric(id, timestamp, name, value);
     }
 
-    private static Metric random() throws InvalidArgumentException {
+    public static Metric random() throws InvalidArgumentException {
         return create(IdMother.random(), MetricTimestampMother.random(), MetricNameMother.random(), MetricValueMother.random());
     }
 }
