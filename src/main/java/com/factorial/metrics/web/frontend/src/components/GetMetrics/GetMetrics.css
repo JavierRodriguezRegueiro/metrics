@@ -1,0 +1,10 @@
+.getMetrics {
+  display: grid;
+}
+
+.getMetrics-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 9rem;
+  grid-column-gap: 1rem;
+  width: 100%;
+}

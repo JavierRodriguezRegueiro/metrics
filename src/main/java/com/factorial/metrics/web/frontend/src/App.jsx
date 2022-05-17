@@ -3,6 +3,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import GetMetricsInRange from './api/GetMetricsInRange';
 import PutMetricForm from "./components/PutMetricForm/PutMetricForm";
+import GetMetrics from "./components/GetMetrics/GetMetrics";
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <button onClick={() => PutMetric.request("1234", "name", "value")}>Put</button>
         <button onClick={() => GetMetricsInRange.request("12", String(Date.now()))}>Get</button>
         <PutMetricForm currentDate={new Date()}/>
+        <GetMetrics />
       </div>
     </LocalizationProvider>
   );
