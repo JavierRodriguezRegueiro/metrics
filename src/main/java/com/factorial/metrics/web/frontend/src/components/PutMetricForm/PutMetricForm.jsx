@@ -6,7 +6,7 @@ import './PutMetricForm.css'
 
 const PutMetricForm = ({currentDate}) => {
   const initialMetricState = {
-    timestamp: currentDate,
+    date: currentDate,
     name: '',
     value: ''
   };
@@ -22,8 +22,8 @@ const PutMetricForm = ({currentDate}) => {
     setMetric(newMetric);
   }
 
-  const changeTimestamp = date => {
-    changeMetricAttribute('timestamp', date)
+  const changeDate = date => {
+    changeMetricAttribute('date', date)
   }
 
   const changeName = e => {
@@ -37,7 +37,7 @@ const PutMetricForm = ({currentDate}) => {
   }
 
   const submitAction = async () => {
-    await PutMetric.request(metric.timestamp.getTime(), metric.name, metric.value)
+    await PutMetric.request(metric.date.getTime(), metric.name, metric.value)
     await resetMetricState();
   }
 
@@ -49,15 +49,15 @@ const PutMetricForm = ({currentDate}) => {
       </div>
     )
   }
-  const [value, setValue] = useState(new Date());
+
   return (
     <form className='putMetricForm' data-testid='putMetricForm'>
       <DateTimePicker
         renderInput={(props) => <TextField {...props}  />}
         label="Date and time"
-        value={metric.timestamp}
+        value={metric.date}
         onChange={(newValue) => {
-          changeTimestamp(newValue)
+          changeDate(newValue)
         }}
       />
       <TextField label='Name' value={metric.name} onChange={changeName} inputProps={{"data-testid":"putMetricForm-name"}} />
