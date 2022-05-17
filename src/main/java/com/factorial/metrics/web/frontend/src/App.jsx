@@ -10,8 +10,6 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className="App" data-testid="app">
-        <button onClick={() => PutMetric.request("1234", "name", "value")}>Put</button>
-        <button onClick={() => GetMetricsInRange.request("12", String(Date.now()))}>Get</button>
         <PutMetricForm currentDate={new Date()}/>
         <GetMetrics />
       </div>

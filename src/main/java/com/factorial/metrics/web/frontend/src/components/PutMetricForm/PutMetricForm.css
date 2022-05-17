@@ -1,8 +1,9 @@
 .putMetricForm {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   max-width: 50rem;
+  height: 20rem;
   grid-row-gap: 1rem;
   padding: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.23);
