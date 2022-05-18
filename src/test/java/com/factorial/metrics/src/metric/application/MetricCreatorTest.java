@@ -3,7 +3,7 @@ package com.factorial.metrics.src.metric.application;
 import com.factorial.metrics.src.metric.domain.MetricNameMother;
 import com.factorial.metrics.src.metric.domain.MetricTimestampMother;
 import com.factorial.metrics.src.metric.domain.MetricValueMother;
-import com.factorial.metrics.src.metric.infrastructure.InMemoryMetricRepository;
+import com.factorial.metrics.src.metric.infrastructure.persistence.InMemoryMetricRepository;
 import com.factorial.metrics.src.shared.domain.IdMother;
 import com.factorial.metrics.src.shared.domain.InvalidArgumentException;
 import org.junit.jupiter.api.Test;

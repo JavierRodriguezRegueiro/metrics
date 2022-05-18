@@ -2,7 +2,7 @@ package com.factorial.metrics.src.metric.application;
 
 import com.factorial.metrics.src.metric.domain.Metric;
 import com.factorial.metrics.src.metric.domain.MetricMother;
-import com.factorial.metrics.src.metric.infrastructure.InMemoryMetricRepository;
+import com.factorial.metrics.src.metric.infrastructure.persistence.InMemoryMetricRepository;
 import com.factorial.metrics.src.shared.domain.InvalidArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

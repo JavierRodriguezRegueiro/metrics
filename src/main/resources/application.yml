@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      database: metrics
+      host: localhost
+      port: 27017
+      username: rootuser
+      password: rootpass
+      authentication-database: admin
+
+server:
+  servlet:
+    context-path: /

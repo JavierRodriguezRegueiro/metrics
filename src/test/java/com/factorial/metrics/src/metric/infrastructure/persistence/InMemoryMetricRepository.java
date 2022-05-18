@@ -1,14 +1,12 @@
-package com.factorial.metrics.src.metric.infrastructure;
+package com.factorial.metrics.src.metric.infrastructure.persistence;
 
 import com.factorial.metrics.src.metric.domain.Metric;
 import com.factorial.metrics.src.metric.domain.MetricRepository;
 import com.factorial.metrics.src.metric.domain.MetricTimestamp;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@Component
 public class InMemoryMetricRepository implements MetricRepository {
     private final ArrayList<Metric> metrics = new ArrayList<>();
 
