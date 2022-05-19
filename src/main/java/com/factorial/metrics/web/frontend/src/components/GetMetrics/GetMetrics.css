@@ -1,5 +1,11 @@
 .getMetrics {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+        'input'
+        'error'
+        'timeline';
+  grid-template-rows: 4.3rem 3rem auto;
 }
 
 .getMetrics-inputs {

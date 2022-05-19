@@ -1,4 +1,4 @@
-import {TextField, Button} from '@mui/material';
+import {TextField, Button, Alert} from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {useState} from "react";
 import PutMetric from '../../api/PutMetric';
@@ -11,9 +11,11 @@ const PutMetricForm = ({currentDate}) => {
     value: ''
   };
   const [metric, setMetric] = useState(initialMetricState);
+  const [error, setError] = useState(false);
 
-  const resetMetricState = () => {
+  const resetState = () => {
     setMetric(initialMetricState)
+    setError(false);
   }
 
   const changeMetricAttribute = (attr, value) => {
@@ -37,21 +39,26 @@ const PutMetricForm = ({currentDate}) => {
   }
 
   const submitAction = async () => {
-    await PutMetric.request(metric.date.getTime(), metric.name, metric.value)
-    await resetMetricState();
+    try {
+      await PutMetric.request(metric.date.getTime(), metric.name, metric.value)
+      resetState();
+    } catch (e) {
+      setError(true);
+    }
   }
 
   const generateButtonBar = () => {
     return (
       <div className='putMetricForm-buttonBar'>
         <Button variant="contained" onClick={submitAction}>Ok</Button>
-        <Button onClick={resetMetricState}>Cancel</Button>
+        <Button onClick={resetState}>Cancel</Button>
       </div>
     )
   }
 
   return (
     <form className='putMetricForm' data-testid='putMetricForm'>
+      {error && <Alert severity="error">Error getting metrics information</Alert>}
       <DateTimePicker
         renderInput={(props) => <TextField {...props}  />}
         label="Date and time"

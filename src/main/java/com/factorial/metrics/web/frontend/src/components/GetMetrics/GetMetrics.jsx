@@ -1,5 +1,5 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import {Button, TextField} from "@mui/material";
+import {Alert, Button, TextField} from "@mui/material";
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -15,10 +15,16 @@ const GetMetrics = () => {
   const [initialDate, setInitialDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [metrics, setMetrics] = useState([]);
+  const [error, setError] = useState(false);
 
   const requestMetrics = async () => {
-    const data =await GetMetricsInRange.request(initialDate.getTime(), endDate.getTime());
-    setMetrics(data);
+    try {
+      const data = await GetMetricsInRange.request(initialDate.getTime(), endDate.getTime());
+      setMetrics(data);
+      setError(false);
+    } catch (e) {
+      setError(true);
+    }
   }
 
   const hasDatesToSend = () => {
@@ -71,6 +77,7 @@ const GetMetrics = () => {
   return (
     <div className='getMetrics'>
       {inputs()}
+      {error && <Alert severity="error">Error sending metric information</Alert>}
       {metrics.length > 0 && <MetricsTimeLine metrics={metrics}/>}
     </div>
   );
