@@ -4,10 +4,10 @@ import PutMetricForm from "./components/PutMetricForm/PutMetricForm";
 import GetMetrics from "./components/GetMetrics/GetMetrics";
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div className="App" data-testid="app">
+      <div className="app" data-testid="app">
         <PutMetricForm currentDate={new Date()}/>
         <GetMetrics />
       </div>
