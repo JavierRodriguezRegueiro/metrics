@@ -16,6 +16,12 @@ For develop proposes:
 
 After that, the frontend will be running in `localhost:3000` and the backend API in `localhost:8080`
 
+## API
+
+| Request                        | Type   | Parameters                                                                                                                                                                   |
+|--------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| /metrics/{id}                  | PUT    | <ul><li>id (String in the URL): Metric id</li><li>timestamp (Timestamp): Metric timestamp</li><li>name (String): Metric name</li> <li>value (String): Metric value</li></ul> |
+| /metrics?init={init}&end={end} | GET    | <ul><li>init (Timestamp): Initial date</li><li> end (Number): end date</li></ul>                                                                                             |
 ## Tests execution
 
 - Backend tests: Inside root project directory, exec `./mvnw test`
