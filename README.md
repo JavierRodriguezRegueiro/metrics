@@ -10,7 +10,7 @@ Simple service to save and find metrics
 For develop proposes:
 
 1. Go into script folder and execute:  `./dev-mode.sh`. It will run mongodb and mongo-express only.
-2. Run the main class **MetricsApplication.java** 
+2. Run `./mvnw spring-boot:run`
 3. Go to `src/main/java/com/factorial/metrics/web/frontend` and run `npm intall` and then `npm start`.
 
 
