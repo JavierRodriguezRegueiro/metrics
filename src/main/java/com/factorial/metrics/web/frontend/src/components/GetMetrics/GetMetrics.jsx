@@ -1,13 +1,8 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {Alert, Button, TextField} from "@mui/material";
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
 import {useState} from "react";
 import GetMetricsInRange from "../../api/GetMetricsInRange";
+import MetricsTimeLine from "./MetricsTimeLine";
 import './GetMetrics.css';
 
 
@@ -56,23 +51,6 @@ const GetMetrics = () => {
     )
   }
 
-  const MetricsTimeLine = () => {
-    return (
-      <Timeline>
-        {metrics.map(metric => {
-          return (
-            <TimelineItem key={metric.id}>
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>{metric.name}</TimelineContent>
-            </TimelineItem>
-          )
-        })}
-      </Timeline>
-    );
-  }
 
   return (
     <div className='getMetrics'>
