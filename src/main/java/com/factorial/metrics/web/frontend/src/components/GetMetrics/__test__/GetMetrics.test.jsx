@@ -1,4 +1,4 @@
-import {act, render, screen} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import GetMetrics from '../GetMetrics';
