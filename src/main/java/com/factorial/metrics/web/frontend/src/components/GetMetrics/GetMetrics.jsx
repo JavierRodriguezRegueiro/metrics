@@ -1,16 +1,34 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import {Alert, Button, TextField} from "@mui/material";
+import {Alert, Button, TextField, MenuItem} from "@mui/material";
 import {useState} from "react";
 import GetMetricsInRange from "../../api/GetMetricsInRange";
 import MetricsTimeLine from "./MetricsTimeLine";
 import './GetMetrics.css';
 
+const orderValues = [
+    {
+      value: 'days',
+      label: 'Days',
+      sections: undefined
+    },
+  {
+    value: 'hours',
+    label: 'Hours',
+    sections: 24
+  },
+  {
+    value: 'minutes',
+    label: 'Minutes',
+    sections: 60
+  }
+];
 
 const GetMetrics = () => {
   const [initialDate, setInitialDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [metrics, setMetrics] = useState([]);
   const [error, setError] = useState(false);
+  const [order, setOrder] =  useState(orderValues[0]);
 
   const requestMetrics = async () => {
     try {
@@ -26,6 +44,14 @@ const GetMetrics = () => {
     return initialDate && endDate;
   }
 
+  const changeOrderBy = (event) => {
+    setOrder(orderValues.find(order => order.value === event.target.value));
+  }
+
+  const clearMetrics = () => {
+    setMetrics([]);
+  }
+
   const inputs = () => {
     return (
       <div className='getMetrics-inputs'>
@@ -34,6 +60,7 @@ const GetMetrics = () => {
           label="Initial date"
           value={initialDate}
           onChange={(newValue) => {
+            clearMetrics()
             setInitialDate(newValue)
           }}
         />
@@ -43,9 +70,20 @@ const GetMetrics = () => {
           label="End date"
           value={endDate}
           onChange={(newValue) => {
+            clearMetrics()
             setEndDate(newValue)
           }}
         />
+        <TextField
+          select
+          value={order.value}
+          label="Order by"
+          onChange={changeOrderBy}
+        >
+          {orderValues.map(order => {
+            return <MenuItem key={order.value} value={order.value}>{order.label}</MenuItem>
+          })}
+        </TextField>
         <Button variant="contained" onClick={async () => await requestMetrics()} disabled={!hasDatesToSend()}>Send</Button>
       </div>
     )
@@ -56,7 +94,7 @@ const GetMetrics = () => {
     <div className='getMetrics'>
       {inputs()}
       {error && <Alert severity="error">Error sending metric information</Alert>}
-      {metrics.length > 0 && <MetricsTimeLine metrics={metrics}/>}
+      {metrics.length > 0 && <MetricsTimeLine metrics={metrics} order={order} initialDate={initialDate} endDate={endDate}/>}
     </div>
   );
 }
