@@ -18,7 +18,7 @@ describe('<GetMetrics />', () => {
   })
 
   it('button should be disabled if there is no initial date or end date', () => {
-    const {getByRole} = render(<EncapsulateGetMetrics />);
-    expect(getByRole('button')).toBeDisabled();
+    const {getAllByRole} = render(<EncapsulateGetMetrics />);
+    expect(getAllByRole('button')[1]).toBeDisabled();
   })
 })
