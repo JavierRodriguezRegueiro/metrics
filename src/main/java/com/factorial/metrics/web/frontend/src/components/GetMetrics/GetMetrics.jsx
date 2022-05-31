@@ -1,8 +1,8 @@
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import {Alert, Button, TextField, MenuItem} from "@mui/material";
-import {useState} from "react";
-import GetMetricsInRange from "../../api/GetMetricsInRange";
-import MetricsTimeLine from "./MetricsTimeLine";
+import {useState} from 'react';
+import GetMetricsInRange from '../../api/GetMetricsInRange';
+import MetricsTimeLine from './MetricsTimeLine';
 import './GetMetrics.css';
 
 const orderValues = [
