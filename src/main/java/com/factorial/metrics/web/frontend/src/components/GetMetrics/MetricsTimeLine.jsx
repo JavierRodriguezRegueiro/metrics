@@ -15,7 +15,10 @@ const MetricsTimeLine = ({metrics, initialDate, endDate, order}) => {
     if (order.value !== 'days') {
       return order.sections;
     }
-    return new Date(endDate).getDate() - new Date(initialDate).getDate()
+    const dateInitial = new Date(initialDate);
+    const dateEnd = new Date(endDate);
+    const diffTime = Math.abs(dateEnd - dateInitial);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
 
   const generateMetricsInfoContent = (index) => {
@@ -81,6 +84,10 @@ const MetricsTimeLine = ({metrics, initialDate, endDate, order}) => {
     )
   }
 
+  const parseDateNumber = (dateNumber) => {
+    return String(dateNumber).length === 1 ? `0${dateNumber}` : dateNumber;
+  }
+
   const timeLineMetricContentLabel = (index) => {
     let label;
     switch (order.value) {
@@ -91,9 +98,9 @@ const MetricsTimeLine = ({metrics, initialDate, endDate, order}) => {
         break;
 
       default:
-        label = String(index).length === 1 ? `0${index}` : index;
+        label = index;
     }
-    return label;
+    return parseDateNumber(label);
   }
 
 
