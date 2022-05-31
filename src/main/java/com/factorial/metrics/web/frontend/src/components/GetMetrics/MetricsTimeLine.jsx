@@ -39,9 +39,11 @@ const MetricsTimeLine = ({metrics, initialDate, endDate, order}) => {
   }
 
   const generateMetricsInfoContentByDay = (index) => {
-    const day = new Date(initialDate).getDate() + index;
+    const day = new Date(initialDate);
+    day.setDate(day.getDate() + index);
     return metrics.filter(metric => {
-      return new Date(Number(metric.timestamp)).getDate() === day;
+      const metricDate = new Date(Number(metric.timestamp));
+      return metricDate.getDate() === day.getDate() && metricDate.getMonth() === day.getMonth() && metricDate.getFullYear() === day.getFullYear();
     }).map((filteredMetric, index) => {
       return metricItemInformation(filteredMetric, index)
     })
