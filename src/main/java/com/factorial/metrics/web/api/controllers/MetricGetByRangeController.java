@@ -30,7 +30,6 @@ public class MetricGetByRangeController {
                    .forEach(metric -> metrics.add(new MetricDTO(metric.getId().toString(), metric.getTimestamp().getTimestamp(), metric.getName().getName(), metric.getValue().getValue())));
             return ResponseEntity.ok().body(metrics);
         } catch (Exception e) {
-            System.out.println(e);
             return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
