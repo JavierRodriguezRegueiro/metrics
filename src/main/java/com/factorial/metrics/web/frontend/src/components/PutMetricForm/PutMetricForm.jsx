@@ -38,9 +38,16 @@ const PutMetricForm = ({currentDate}) => {
     changeMetricAttribute('value', value)
   }
 
+  const throwError = () => {
+    throw new Error();
+  }
+
   const submitAction = async () => {
     try {
-      await PutMetric.request(metric.date.getTime(), metric.name, metric.value)
+      const request = await PutMetric.request(metric.date.getTime(), metric.name, metric.value)
+      if(!request.ok) {
+        throwError()
+      }
       resetState();
     } catch (e) {
       setError(true);
@@ -58,7 +65,7 @@ const PutMetricForm = ({currentDate}) => {
 
   return (
     <form className='putMetricForm' data-testid='putMetricForm'>
-      {error && <Alert severity="error">Error getting metrics information</Alert>}
+      {error && <Alert severity="error">Error sending metrics information</Alert>}
       <DateTimePicker
         renderInput={(props) => <TextField {...props}  />}
         label="Date and time"
